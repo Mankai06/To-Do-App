@@ -1,0 +1,128 @@
+:root{
+  --bg1:#89f7fe; --bg2:#66a6ff;
+  --card:#ffffff; --muted:#6b7280; --accent:#4facfe;
+  --danger:#ff6b6b;
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;
+  background: linear-gradient(160deg,var(--bg1),var(--bg2));
+  display:flex;align-items:center;justify-content:center;padding:20px;
+}
+
+/* Page layout */
+.page{width:100%;max-width:920px;display:none}
+.page.active{display:block;animation:pageIn .45s ease}
+.card{background:rgba(255,255,255,0.98);border-radius:14px;padding:18px;box-shadow:0 10px 30px rgba(2,6,23,0.12)}
+.card-login{max-width:420px;margin:0 auto;text-align:center;padding:28px}
+
+/* Header */
+.header{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.brand{font-size:24px;margin:0;color:#1f2937}
+.subtitle{margin:6px 0 18px;color:var(--muted)}
+.greeting{margin:0}
+
+/* clock & stats */
+.clock{font-weight:600;color:#0f172a}
+.stats{display:flex;gap:12px;align-items:center}
+.stat{background:linear-gradient(90deg,#fff, #f6f9ff);padding:6px 10px;border-radius:8px;font-size:14px;color:#0f172a}
+
+/* Inputs & buttons */
+input[type="text"], input[type="date"], input[type="time"], select{
+  width:100%;padding:10px;border-radius:10px;border:1px solid #e6eefc;margin-bottom:8px;font-size:14px;
+  background-color:#fbfdff;
+}
+.task-input{display:grid;grid-template-columns: 1fr 160px 120px 120px;gap:8px;margin-bottom:12px}
+.task-input .row{grid-column:1/-1;display:flex;gap:8px}
+.row{display:flex;gap:8px}
+.gap{gap:8px}
+.btn{padding:10px 12px;border-radius:10px;border:0;cursor:pointer;font-weight:600}
+.btn.primary{background:var(--accent);color:white;box-shadow:0 6px 18px rgba(79,139,255,0.18);transition:transform .15s ease}
+.btn.primary:active{transform:translateY(1px)}
+.btn.danger{background:var(--danger);color:white}
+.btn.ghost{background:transparent;border:1px solid #e6eefc;color:#0f172a}
+
+/* Progress */
+.progress-wrap{margin:10px 0}
+.progress-label{display:flex;justify-content:space-between;align-items:center;font-size:13px;color:var(--muted);margin-bottom:6px}
+.progress-bar{height:10px;background:#eef3ff;border-radius:999px;overflow:hidden}
+#progressFill{height:100%;width:0;background:linear-gradient(90deg,var(--accent),#3b82f6);transition:width .35s ease}
+
+/* Task list */
+.task-list{list-style:none;padding:0;margin:10px 0 0}
+.task-item{display:flex;align-items:center;justify-content:space-between;background:#fff;padding:10px;border-radius:10px;margin-bottom:8px;box-shadow:0 5px 14px rgba(2,6,23,0.04);transform-origin:left;animation:popIn .35s ease}
+.task-left{display:flex;align-items:center;gap:12px}
+.cat-badge{width:44px;height:44px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:20px;background:linear-gradient(135deg,#f0f9ff,#eef7ff)}
+.task-meta{display:flex;flex-direction:column}
+.task-title{font-weight:600;color:#0f172a}
+.task-sub{font-size:13px;color:var(--muted)}
+.task-actions{display:flex;gap:8px;align-items:center}
+.icon-btn{background:transparent;border:0;cursor:pointer;font-size:18px;padding:6px}
+.completed .task-title{text-decoration:line-through;color:gray}
+
+/* Modal / Quiz */
+.modal{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(2,6,23,0.45);z-index:50}
+.modal.hidden{display:none}
+.modal-content{background:#fff;padding:18px;border-radius:12px;width:min(680px,92%);max-width:520px;text-align:center;box-shadow:0 12px 36px rgba(2,6,23,0.2)}
+
+/* small utilities */
+.muted{color:var(--muted)}
+.center{text-align:center}
+.small{font-size:13px;color:var(--muted)}
+
+/* Animations */
+@keyframes popIn{from{opacity:0; transform:scale(.96)} to{opacity:1; transform:scale(1)}}
+@keyframes pageIn{from{opacity:0; transform:translateY(12px)}to{opacity:1;transform:none}}
+@keyframes confFly{0%{transform:translateY(-10vh) rotate(0)}100%{transform:translateY(110vh) rotate(720deg)}}
+
+/* Confetti will be drawn on canvas (script) */
+
+/* Responsive adjustments */
+@media(max-width:900px){
+  .task-input{grid-template-columns:1fr 120px 120px 120px}
+}
+@media(max-width:700px){
+  .task-input{grid-template-columns:1fr;align-items:stretch}
+  .stats{display:none}
+}
+/* Quiz container centered */
+.quiz-container {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 20px;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  z-index: 2000;
+  width: 320px;
+  text-align: center;
+  animation: fadeIn 0.5s ease;
+}
+
+/* Smooth fade-in */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -60%);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+}
+
+/* Confetti full screen */
+#confetti-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 3000;
+}

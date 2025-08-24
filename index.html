@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Advanced To-Do — Fun & Quiz</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Confetti canvas -->
+  <canvas id="confetti-canvas"></canvas>
+
+  <!-- Login Page -->
+  <main id="login-page" class="page active">
+    <div class="card card-login">
+      <h1 class="brand">Streak To-Do</h1>
+      <p class="subtitle">Organize — Complete — Level up 🎯</p>
+
+      <input id="loginName" type="text" placeholder="Your name" />
+      <input id="loginPass" type="password" placeholder="Password (demo)" />
+      <div class="row">
+        <button id="btnLogin" class="btn primary">Login</button>
+      </div>
+      <p class="small muted">This is a demo login — no server involved.</p>
+    </div>
+  </main>
+
+  <!-- App Page -->
+  <main id="app-page" class="page">
+    <div class="card">
+      <header class="header">
+        <div>
+          <h2 id="greeting">Hi!</h2>
+          <div id="clock" class="clock">00:00:00 AM</div>
+        </div>
+        <div class="stats">
+          <div class="stat">🔥 Streak: <span id="streakValue">0</span></div>
+          <div class="stat">⭐ Stars: <span id="starsValue">0</span></div>
+        </div>
+      </header>
+
+      <!-- Quote -->
+      <p id="quote" class="quote muted">Motivation appears here when you login.</p>
+
+      <!-- Task input -->
+      <section class="task-input">
+        <input id="taskTitle" placeholder="Add a task (eg. Finish chapter 3)" />
+        <select id="taskCategory">
+          <option value="Study">📘 Study</option>
+          <option value="Work">💼 Work</option>
+          <option value="Fitness">🏋️ Fitness</option>
+          <option value="Personal">🌸 Personal</option>
+        </select>
+        <input id="taskDate" type="date" />
+        <input id="taskTime" type="time" />
+        <div class="row gap">
+          <button id="btnAdd" class="btn primary">➕ Add</button>
+          <button id="btnClear" class="btn danger">🗑 Clear</button>
+        </div>
+      </section>
+
+      <!-- Progress -->
+      <div class="progress-wrap">
+        <div class="progress-label"><small>Daily progress</small> <strong id="progressText">0/0</strong></div>
+        <div class="progress-bar"><div id="progressFill"></div></div>
+      </div>
+
+      <!-- Task list -->
+      <ul id="taskList" class="task-list"></ul>
+    </div>
+  </main>
+
+  <!-- Quiz Modal -->
+  <div id="quizModal" class="modal hidden">
+    <div class="modal-content">
+      <h3>🎯 Quick Quiz — Bonus Streak</h3>
+      <p id="quizQuestion" class="quiz-q"></p>
+      <div id="quizOptions" class="quiz-options"></div>
+      <div class="row center">
+        <button id="quizClose" class="btn ghost">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
